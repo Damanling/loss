@@ -12,7 +12,7 @@ func main() {
 		return
 	}
 
-	 commandName:= os.Args[1]
+	commandName := os.Args[1]
 	if commandName == "hello" {
 		fmt.Printf("hello, brother - это loss v%s\n", version)
 		return

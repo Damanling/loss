@@ -1,0 +1,45 @@
+version: "2"
+
+run:
+  timeout: 3m
+  tests: true
+
+linters:
+  default: none
+  enable:
+    - errcheck
+    - govet
+    - staticcheck
+    - unused
+    - misspell
+    - ineffassign
+
+  settings:
+    errcheck:
+      exclude-functions:
+        - (io.Closer).Close
+        - fmt.Fprintln
+        - fmt.Fprintf
+        - fmt.Fprint
+
+    misspell:
+      locale: US
+
+    revive:
+      severity: warning
+      rules:
+        - name: exported
+        - name: var-naming
+        - name: package-comments
+        - name: indent-error-flow
+        - name: superfluous-else
+        - name: unreachable-code
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+
+formatters:
+  enable:
+    - gofmt
+    - goimports
