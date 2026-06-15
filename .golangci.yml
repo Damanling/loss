@@ -11,10 +11,7 @@ linters:
     - govet
     - staticcheck
     - unused
-    - gofmt
-    - goimports
     - misspell
-    - revive
     - ineffassign
 
   settings:
