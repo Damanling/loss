@@ -7,16 +7,14 @@ import (
 
 const version = "0.1"
 
-func main() {
-	if len(os.Args) < 2 {
+ func sff(){
+	if( len(os.Args) < 2){
+	return
+	}
+	var arg string = os.Args[1]
+	if(arg == "hello"){
+		fmt.Printf("ddddd%s\n",version)
 		return
 	}
-
-	commandName := os.Args[1]
-	if commandName == "hello" {
-		fmt.Printf("hello, brother - это loss v%s\n", version)
-		return
-	}
-
-	fmt.Printf("got: %s\n", commandName)
-}
+fmt.Println("got: "+ version)
+ }
