@@ -4,3 +4,29 @@
 
 Как запустить:
 go run cmd/main.go
+
+Команды:
+hello
+echo
+
+Ошибки: 
+usage: 
+loss hello
+loss echo args
+exit status 1
+ Если вылазиют ошибки, то ваш запрос не соответсует данным командам.
+ 
+ Структура папок:
+── Loss
+    ├──.github
+        └──ci.yml
+    ├──cmd/loss
+        └──main.go
+    ├──internal
+        └──.getkeep
+    ├──.editorconfig
+    ├──.gitignore
+    ├──.golangli.yml
+    ├──go.mod
+    ├──README.md
+ 
