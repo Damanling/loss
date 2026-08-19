@@ -8,6 +8,15 @@ import (
 
 const version = "0.1"
 
+type Categories string
+const (
+	CategoryFood = "food"
+	CategoryTransport = "transport"
+	CategoryFun = "fun"
+	CategoryBills = "bills"
+	CategoryOther = "other"
+)
+
 func main() {
 	if len(os.Args) < 2 {
 		usage()
@@ -15,6 +24,7 @@ func main() {
 	}
 
 	hello := flag.NewFlagSet(os.Args[1], flag.ExitOnError)
+	add := flag.NewFlagSet(os.Args[1], flag.ExitOnError)
 
 	switch os.Args[1] {
 	case "hello":
@@ -34,6 +44,26 @@ func main() {
 		}
 
 		fmt.Printf("echo: %s\n", os.Args[2:])
+
+	case "add":
+		var amount = add.Int("amount", 0, "потраченная сумма")
+
+		if err := add.Parse(os.Args[2:]); err != nil {
+			usage()
+			os.Exit(1)
+		}
+
+		fmt.Println(*amount)
+
+		var cat = add.String("cat", "empty", "категории")
+		if *cat {
+			
+		}
+		if *cat != CategoryFood && CategoryTransport && CategoryFun && CategoryBills && CategoryOther {
+			fmt.Fprintln(os.Stderr, "unknown category, allowed: food, transport, fun, bills, other")
+			os.Exit(1)
+		}
+		fmt.Println(*cat)
 
 	default:
 		usage()
