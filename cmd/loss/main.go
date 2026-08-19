@@ -8,13 +8,20 @@ import (
 
 const version = "0.1"
 
+func list() {
+	fmt.Println("1500")
+	fmt.Println("food")
+	fmt.Println("кофе")
+}
+
 type Categories string
+
 const (
-	CategoryFood = "food"
+	CategoryFood      = "food"
 	CategoryTransport = "transport"
-	CategoryFun = "fun"
-	CategoryBills = "bills"
-	CategoryOther = "other"
+	CategoryFun       = "fun"
+	CategoryBills     = "bills"
+	CategoryOther     = "other"
 )
 
 func main() {
@@ -47,23 +54,48 @@ func main() {
 
 	case "add":
 		var amount = add.Int("amount", 0, "потраченная сумма")
+		var cat = add.String("cat", "empty", "категории")
+		var note = add.String("note", "empty", "что купил")
 
 		if err := add.Parse(os.Args[2:]); err != nil {
 			usage()
 			os.Exit(1)
 		}
 
-		fmt.Println(*amount)
-
-		var cat = add.String("cat", "empty", "категории")
-		if *cat {
-			
+		if *amount == 0 {
+			fmt.Fprintln(os.Stderr, "amount flag is required")
+			os.Exit(1)
 		}
-		if *cat != CategoryFood && CategoryTransport && CategoryFun && CategoryBills && CategoryOther {
+
+		if *amount < 0 {
+			fmt.Fprintln(os.Stderr, "amount must be positive")
+			os.Exit(1)
+		}
+
+		switch *cat {
+		case CategoryFood, CategoryTransport, CategoryFun, CategoryBills, CategoryOther:
+			fmt.Println("Категория выбрана верно")
+		case "empty":
+			fmt.Fprintln(os.Stderr, "cat flag is required")
+			os.Exit(1)
+		default:
 			fmt.Fprintln(os.Stderr, "unknown category, allowed: food, transport, fun, bills, other")
 			os.Exit(1)
 		}
+
+		fmt.Println(*amount)
 		fmt.Println(*cat)
+		fmt.Println(*note)
+
+	case "list":
+		list()
+
+	case "cats":
+		fmt.Println(CategoryFood)
+		fmt.Println(CategoryTransport)
+		fmt.Println(CategoryFun)
+		fmt.Println(CategoryBills)
+		fmt.Println(CategoryOther)
 
 	default:
 		usage()
@@ -75,4 +107,7 @@ func usage() {
 	fmt.Fprintln(os.Stderr, "usage: ")
 	fmt.Fprintln(os.Stderr, "loss hello")
 	fmt.Fprintln(os.Stderr, "loss echo args")
+	fmt.Fprintln(os.Stderr, "loss add --amount 100 --cat food --note 'что купил'")
+	fmt.Fprintln(os.Stderr, "loss list")
+	fmt.Fprintln(os.Stderr, "loss cats")
 }
