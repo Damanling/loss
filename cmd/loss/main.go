@@ -12,7 +12,7 @@ func main() {
 	if len(os.Args) < 2 {
 		usage()
 
-
+// TODO: сделать вывод в stderr
 
 
 
