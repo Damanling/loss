@@ -11,6 +11,11 @@ const version = "0.1"
 func main() {
 	if len(os.Args) < 2 {
 		usage()
+
+
+
+
+
 		os.Exit(1)
 	}
 	hello := flag.NewFlagSet(os.Args[1], flag.ExitOnError)
@@ -23,6 +28,8 @@ func main() {
 			os.Exit(1)
 		}
 		fmt.Println("hello, " + *name + " — это loss v" + version)
+
+		fmt.Println('test')
 
 	case "echo":
 		if len(os.Args) < 3 {
