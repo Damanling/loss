@@ -10,8 +10,9 @@ import (
 const version = "0.1"
 
 func list() {
-	
+
 }
+
 var categories = []string{"food", "transport", "fun", "bills", "other"}
 
 func validCategory(c string) bool { return slices.Contains(categories, c) }
@@ -23,7 +24,7 @@ func main() {
 	}
 
 	hello := flag.NewFlagSet(os.Args[1], flag.ExitOnError)
-	
+
 	switch os.Args[1] {
 	case "hello":
 		var name = hello.String("name", "brother", "имя пользователя")
@@ -43,7 +44,7 @@ func main() {
 		fmt.Printf("echo: %s\n", os.Args[2:])
 
 	case "add":
-		add := flag.NewFlagSet("add", flag. ContinueOnError)
+		add := flag.NewFlagSet("add", flag.ContinueOnError)
 
 		var amount = add.Int64("amount", 0, "потраченная сумма")
 		var cat = add.String("cat", "empty", "категории")
